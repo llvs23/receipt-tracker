@@ -6,12 +6,10 @@
 
 AI 기반 영수증 지출 관리 앱 — 1일 스프린트 MVP. 사용자가 영수증 이미지/PDF를 업로드하면 Upstage Vision LLM(LangChain 경유)으로 파싱하여 구조화된 지출 데이터를 JSON으로 저장한다.
 
-**현재 상태**: 기획/명세 단계. 소스 코드 없음. 모든 구현 단계 미착수.
-
 ## 기술 스택
 
 - **Frontend**: React 18 + Vite 5 + TailwindCSS 3 + Axios
-- **Backend**: Python FastAPI 0.111 + LangChain 0.2 + Upstage Vision LLM (`document-digitization-vision`)
+- **Backend**: Python FastAPI 0.111 + LangChain-Upstage 0.7.7 + Upstage Vision LLM (`document-digitization-vision`)
 - **저장소**: JSON 파일 (`backend/data/expenses.json`) — DB 없음
 - **배포**: Vercel (백엔드는 serverless functions, 프론트엔드는 static)
 - **API 키**: `UPSTAGE_API_KEY`는 `.env`에 이미 설정되어 있음
@@ -35,14 +33,14 @@ receipt-tracker/
 └── vercel.json
 ```
 
-## 실행 명령어 (코드 생성 후 사용)
+## 실행 명령어
 
-**Backend:**
+**Backend (프로젝트 루트에서 실행):**
 ```bash
-cd backend
-python -m venv venv && source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
+python -m venv venv
+venv\Scripts\activate  # Windows
+pip install -r backend/requirements.txt
+uvicorn backend.main:app --reload --port 8000
 ```
 
 **Frontend:**
@@ -91,7 +89,7 @@ npm run build      # 프로덕션 빌드
 
 ## 구현 단계 (PRD 기준)
 
-1. 프로젝트 셋업 — GitHub, `.env`, venv, `requirements.txt`, React+Vite 스캐폴딩
+1. ✅ 프로젝트 셋업 — GitHub, `.env`, venv, `requirements.txt`, React+Vite 스캐폴딩
 2. 백엔드 OCR 연동 — FastAPI + Upstage Vision LLM (LangChain)
 3. 백엔드 CRUD API — 지출 라우터 + JSON 스토리지 서비스
 4. 프론트엔드 스캐폴딩 — Vite + TailwindCSS + Axios 기본 설정

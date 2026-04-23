@@ -1296,3 +1296,4 @@ export default api
 
 | 시각 | 파일 | 작업 |
 |------|------|------|
+| 2026-04-23 15:32 | `backend\requirements.txt` | Write — Phase 1 — 의존성 |
